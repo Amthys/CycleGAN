@@ -249,7 +249,7 @@ if __name__ == '__main__':
 
         # DISCRIMINATOR CURVES
         # training
-        """
+
         D_A = np.array(lossDict['D_A'])
         lossMeanListD_A = np.cumsum(D_A)/np.cumsum(np.ones(len(D_A)))
         lossVarListD_A = [np.var(D_A[0:i]) for i in range(1,len(D_A)+1)]
@@ -388,7 +388,7 @@ if __name__ == '__main__':
         plt.clf()
         plt.cla()
         plt.close()
-        """
+
         ############################
         ############################
         print('End of epoch %d / %d \t Time Taken: %d sec' % (epoch, opt.n_epochs + opt.n_epochs_decay, time.time() - epoch_start_time))
