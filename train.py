@@ -132,7 +132,7 @@ def writeCSV(csvPath, mode, trainingDict, validationDict):
 if __name__ == '__main__':
     opt = TrainOptions().parse()   # get training options
     valopt = copy.copy(opt)
-    valopt.dataroot = opt.dataroot + 'Validation/'
+    valopt.dataroot = opt.dataroot
 
     dataset = create_dataset(opt)  # create a dataset given opt.dataset_mode and other options
 
