@@ -215,7 +215,6 @@ if __name__ == '__main__':
                 model.save_networks(save_suffix)
 
             #if total_iters % 500 == 0:
-            print('Validation round')
             valLoss = evaluate(model,validationDataset,opt)
             valLossDict['xvalue'].append(total_iters)
             valLossDict['cycle_A'].append(valLoss['cycle_A'])
