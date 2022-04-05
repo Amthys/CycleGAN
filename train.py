@@ -165,6 +165,7 @@ if __name__ == '__main__':
     valLossDict['cycle_B'] = []
     valLossDict['idt_B'] = []
     valLossDict['xvalue'] = []
+    
     for epoch in range(opt.epoch_count, opt.n_epochs + opt.n_epochs_decay + 1):    # outer loop for different epochs; we save the model by <epoch_count>, <epoch_count>+<save_latest_freq>
 
         epoch_start_time = time.time()  # timer for entire epoch
@@ -264,14 +265,14 @@ if __name__ == '__main__':
         valLossMeanListD_B = np.cumsum(val_D_B)/np.cumsum(np.ones(len(val_D_B)))
         valLossVarListD_B = [np.var(val_D_B[0:i]) for i in range(1,len(val_D_B)+1)]
         #plot
-        plt.plot(range(len(D_A)),lossMeanListD_A , '--', color="#191970",  label="training loss person discriminator")
+        plt.plot(range(len(D_A)),lossMeanListD_A , '--', color="#191970",  label="training loss cbct discriminator")
         plt.fill_between(range(len(D_A)),lossMeanListD_A - lossVarListD_A, lossMeanListD_A + lossVarListD_A, color="#B0E0E6",alpha=0.5)
-        plt.plot(range(len(D_B)),lossMeanListD_B , '--', color="#8B0000",  label="training loss waifu discriminator B")
+        plt.plot(range(len(D_B)),lossMeanListD_B , '--', color="#8B0000",  label="training loss ct discriminator B")
         plt.fill_between(range(len(D_B)),lossMeanListD_B - lossVarListD_B, lossMeanListD_B + lossVarListD_B, color="#FFA07A",alpha=0.5)
 
-        plt.plot(valLossDict['xvalue'],valLossMeanListD_A , '--', color="#38761d",  label="validation loss person discriminator")
+        plt.plot(valLossDict['xvalue'],valLossMeanListD_A , '--', color="#38761d",  label="validation loss cbct discriminator")
         plt.fill_between(valLossDict['xvalue'],valLossMeanListD_A - valLossVarListD_A, valLossMeanListD_A + valLossVarListD_A, color="#b6d7a8",alpha=0.5)
-        plt.plot(valLossDict['xvalue'],valLossMeanListD_B , '--', color="#7f6000",  label="training loss waifu discriminator B")
+        plt.plot(valLossDict['xvalue'],valLossMeanListD_B , '--', color="#7f6000",  label="training loss ct discriminator B")
         plt.fill_between(valLossDict['xvalue'],valLossMeanListD_B - valLossVarListD_B, valLossMeanListD_B + valLossVarListD_B, color="#ffd966",alpha=0.5)
 
         plt.ylabel("E[log(D_y(y))]-E[log(1-D_y(G(x))]")
@@ -299,15 +300,15 @@ if __name__ == '__main__':
         valLossMeanListD_B = np.cumsum(val_D_B)/np.cumsum(np.ones(len(val_D_B)))
         valLlossVarListD_B = [np.var(val_D_B[0:i]) for i in range(1,len(val_D_B)+1)]
         # plot
-        plt.plot(range(len(D_A)),lossMeanListD_A , '--', color="#191970",  label="loss person generator")
+        plt.plot(range(len(D_A)),lossMeanListD_A , '--', color="#191970",  label="loss cbct generator")
         plt.fill_between(range(len(D_A)),lossMeanListD_A - lossVarListD_A, lossMeanListD_A + lossVarListD_A, color="#B0E0E6",alpha=0.5)
-        plt.plot(range(len(D_B)),lossMeanListD_B , '--', color="#8B0000",  label="loss waifu generator")
+        plt.plot(range(len(D_B)),lossMeanListD_B , '--', color="#8B0000",  label="loss ct generator")
         plt.fill_between(range(len(D_B)),lossMeanListD_B - lossVarListD_B, lossMeanListD_B + lossVarListD_B, color="#FFA07A",alpha=0.5)
 
 
-        plt.plot(valLossDict['xvalue'],valLossMeanListD_A , '--', color="#38761d",  label="validation loss person generator")
+        plt.plot(valLossDict['xvalue'],valLossMeanListD_A , '--', color="#38761d",  label="validation loss cbct generator")
         plt.fill_between(valLossDict['xvalue'],valLossMeanListD_A - valLossVarListD_A, valLossMeanListD_A + valLossVarListD_A, color="#b6d7a8",alpha=0.5)
-        plt.plot(valLossDict['xvalue'],valLossMeanListD_B , '--', color="#7f6000",  label="training loss waifu generator")
+        plt.plot(valLossDict['xvalue'],valLossMeanListD_B , '--', color="#7f6000",  label="training loss ct generator")
         plt.fill_between(valLossDict['xvalue'],valLossMeanListD_B - valLossVarListD_B, valLossMeanListD_B + valLossVarListD_B, color="#ffd966",alpha=0.5)
 
 
@@ -370,14 +371,14 @@ if __name__ == '__main__':
         valLossMeanListD_B = np.cumsum(val_D_B)/np.cumsum(np.ones(len(val_D_B)))
         valLlossVarListD_B = [np.var(val_D_B[0:i]) for i in range(1,len(val_D_B)+1)] 
 
-        plt.plot(range(len(D_A)),lossMeanListD_A , '--', color="#191970",  label="identity loss person")
+        plt.plot(range(len(D_A)),lossMeanListD_A , '--', color="#191970",  label="identity loss cbct")
         plt.fill_between(range(len(D_A)),lossMeanListD_A - lossVarListD_A, lossMeanListD_A + lossVarListD_A, color="#B0E0E6",alpha=0.5)
-        plt.plot(range(len(D_B)),lossMeanListD_B , '--', color="#8B0000",  label="identity loss waifu")
+        plt.plot(range(len(D_B)),lossMeanListD_B , '--', color="#8B0000",  label="identity loss ct")
         plt.fill_between(range(len(D_B)),lossMeanListD_B - lossVarListD_B, lossMeanListD_B + lossVarListD_B, color="#FFA07A",alpha=0.5)
 
-        plt.plot(valLossDict['xvalue'],valLossMeanListD_A , '--', color="#38761d",  label="validation identity loss person")
+        plt.plot(valLossDict['xvalue'],valLossMeanListD_A , '--', color="#38761d",  label="validation identity loss cbct")
         plt.fill_between(valLossDict['xvalue'],valLossMeanListD_A - valLossVarListD_A, valLossMeanListD_A + valLossVarListD_A, color="#b6d7a8",alpha=0.5)
-        plt.plot(valLossDict['xvalue'],valLossMeanListD_B , '--', color="#7f6000",  label="training identity loss waifu")
+        plt.plot(valLossDict['xvalue'],valLossMeanListD_B , '--', color="#7f6000",  label="training identity loss ct")
         plt.fill_between(valLossDict['xvalue'],valLossMeanListD_B - valLossVarListD_B, valLossMeanListD_B + valLossVarListD_B, color="#ffd966",alpha=0.5)
 
         plt.ylabel("E[||G(y)-y||]")
